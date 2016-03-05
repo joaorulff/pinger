@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="Styles/main_view.css">
+		<title>Pinger</title>
+	</head>
+
+	<body>
+
+		<div class="queryForm">
+
+			<form action="Controllers/main_controller.php" method="post">
+
+				<table>
+
+					<tr>
+						<td>Metric</td>
+						<td>
+							<input type="radio" name="metric" value="throughput"> Throughput
+						</td>
+						<td>
+							<input type="radio" name="metric" value="packet_loss">
+							Packet Loss
+						</td>
+					</tr>
+
+					<tr>
+						<td>Countries</td>
+						<td>
+							<input type="text" name="country_from">
+						</td>
+						<td>
+							<input type="text" name="country_to">
+						</td>
+					</tr>
+					<tr>
+						<td>Period</td>
+						<td>	
+							<input type="date" name="data_from">
+						</td>
+						<td>
+							<input type="date" name='data_to'>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="submit-button" colspan="3">
+							<input type="submit" value="Search">
+						</td>
+					</tr>
+
+
+				</table>
+
+			</form>
+
+		</div>
+
+	</body>
+
+
+</html>

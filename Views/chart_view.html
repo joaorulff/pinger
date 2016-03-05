@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+
+		<meta charset="UTF-8">
+		<title>Pinger</title>
+		<link rel="stylesheet" type="text/css" href="../Styles/chart_view.css">
+		<script  type="text/javascript" src="../D3/d3.min.js"></script>	
+		<script  type="text/javascript" src="../D3/graphPlotting/barGraph.js"></script>		
+	
+	</head>
+
+	<body>
+
+		<script>
+
+			var test = <?php echo $result ?>;
+
+			var w = 800;
+			var h = 1000;
+
+			plotBarGraph(test);
+
+		</script>
+	
+	</body>
+
+</html> 

@@ -1,8 +1,12 @@
 <?php
 
 function queryBuilder($metric, $countriesFrom, $countriesTo){
+	
+	$query = "select c.name, temp.throughput FROM (SELECT meas.destination_country_id AS country, cast(avg(meas.throughput) as INTEGER) AS  throughput
+FROM pinger_measurement meas, country c
+WHERE meas.source_country_id = c.id AND c.name = 'United States'
+GROUP BY country) as temp, country c WHERE temp.country = c.id ORDER BY temp.throughput";
 
-	$query = "SELECT dst_country FROM pinger_measurement meas, country dst_country, time t" ;
 
 	return queryDB($query);
 
@@ -10,11 +14,21 @@ function queryBuilder($metric, $countriesFrom, $countriesTo){
 
 
 function queryDB($query){
+	
+	$values = array();
 
-	//Implement connectinon with Impala
+	$dsn = "DSN=Sample Cloudera Impala DSN 64; host=192.168.1.101; port=21050; database=default;";
+
+        $conn = odbc_connect($dsn,'','');
+        $result = odbc_exec($conn, $query);
+
+        while($row = odbc_fetch_array($result)){
+		$values[] = $row;
+	}
+
 
 	//Stub
-	$values =  array(array("country" => "Brazil", "throughput" => 100),
+	$values1 =  array(array("country" => "Brazil", "throughput" => 100),
 					array("country" => "Uruguay", "throughput" => 200),
 					array("country" => "Chile", "throughput" => 400),
 					array("country" => "Bolivia", "throughput" => 454),
@@ -29,7 +43,7 @@ function queryDB($query){
 					);
 
 	$resultSet = json_encode($values);
-
+	echo $resultSet;
 	return $resultSet;
 
 	
@@ -38,6 +52,6 @@ function queryDB($query){
 
 }
 
-	
+
 
 ?>

@@ -1,5 +1,5 @@
 body,html{
-	background-color: orange;
+	background-color: blue;
 	margin: 0;
 	padding: 0;
 	font-family: "Arial", sans-serif;
@@ -18,7 +18,7 @@ body,html{
 }
 
 .bar-label{
-	font-size: 24px;
+	font-size: 12px;
 	fill: white;
 	text-anchor: end;
 }

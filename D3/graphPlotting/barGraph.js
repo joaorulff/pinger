@@ -6,7 +6,7 @@ function plotBarGraph(dataSource){
 
 
 	var maxValueFromArray = d3.max(dataSource, function(dataSource){
-		return dataSource.throughput;
+		return parseInt(dataSource.throughput);
 	});
 
 	var x = d3.scale.linear()
@@ -19,7 +19,7 @@ function plotBarGraph(dataSource){
 				.attr("height", h);
 
 	var chart = svg.append("g")
-					.classed("display", true);
+			.classed("display", true);
 
 	chart.selectAll(".bar")
 		.data(dataSource)
@@ -31,7 +31,7 @@ function plotBarGraph(dataSource){
 			return y(index);
 		})
 		.attr("width", function(data, index){
-			return x(data.throughput);
+			return x(parseInt(data.throughput));
 		})
 		.attr("height", y(1)-1);
 
@@ -43,7 +43,7 @@ function plotBarGraph(dataSource){
 		.append("text")
 		.classed("bar-label", true)
 		.attr("x", function(row, index){
-			return x(row.throughput);
+			return x(parseInt(row.throughput));
 		})
 		.attr("y" , function(row, index){
 			return y(index);
